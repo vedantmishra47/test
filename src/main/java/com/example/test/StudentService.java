@@ -1,5 +1,6 @@
 package com.example.test;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,14 +29,18 @@ public class StudentService {
     public boolean addData(Student student){
         String designation=student.getDesignation();
         String name=student.getName();
-        Student student1=studentRepository.findByDesignationAndName(designation,name);
-        if(student1==null) {
-            try {
-                studentRepository.save(student);
-                return true;
-            } catch (Exception e) {
+
+        if(designation!=null && name!=null && !StringUtils.isBlank(designation) && !StringUtils.isBlank(name)) {
+            Student student1 = studentRepository.findByDesignationAndName(designation, name);
+            if (student1 == null) {
+                try {
+                    studentRepository.save(student);
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            } else
                 return false;
-            }
         }
         else
             return false;

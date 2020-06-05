@@ -1,5 +1,6 @@
 package com.example.test;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +16,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
     @SequenceGenerator(name="student_generator", sequenceName = "student_seq" ,allocationSize=1,initialValue=1)
     private int id;
-
     private String name;
-
     private String designation;
 
     public Student() {
