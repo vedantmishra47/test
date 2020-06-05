@@ -20,18 +20,25 @@ public class StudentService {
     }
     public List<Student> fetchAllData(){
         List<Student> studentList=Optional.ofNullable(studentRepository.findAll()).orElse(null);
-        if(studentList!=null)
+        if(!studentList.isEmpty())
             return studentList;
         else
             return null;
     }
     public boolean addData(Student student){
-        try {
-            studentRepository.save(student);
-            return true;
-        } catch (Exception e) {
-            return false;
+        String designation=student.getDesignation();
+        String name=student.getName();
+        Student student1=studentRepository.findByDesignationAndName(designation,name);
+        if(student1==null) {
+            try {
+                studentRepository.save(student);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         }
+        else
+            return false;
     }
     public boolean deleteData(int id){
         Optional<Student> student=Optional.ofNullable(studentRepository.findById(id)).orElse(null);
