@@ -1,6 +1,5 @@
 package com.example.test;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
