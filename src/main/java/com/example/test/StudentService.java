@@ -30,7 +30,7 @@ public class StudentService {
         String designation=student.getDesignation();
         String name=student.getName();
 
-        if(designation!=null && name!=null && !StringUtils.isBlank(designation) && !StringUtils.isBlank(name)) {
+        if(!StringUtils.isBlank(designation) && !StringUtils.isBlank(name)) {
             Student student1 = studentRepository.findByDesignationAndName(designation, name);
             if (student1 == null) {
                 try {
