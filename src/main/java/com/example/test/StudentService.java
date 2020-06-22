@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,10 @@ public class StudentService {
     }
     public List<Student> fetchAllData(){
         List<Student> studentList=Optional.ofNullable(studentRepository.findAll()).orElse(null);
-        if(!studentList.isEmpty())
+        if(!studentList.isEmpty()) {
+            Collections.sort(studentList);
             return studentList;
+        }
         else
             return null;
     }

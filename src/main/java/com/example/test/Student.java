@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name="Student")
-public class Student {
+public class Student implements Comparable<Student> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
@@ -24,5 +24,18 @@ public class Student {
     public Student(String name, String designation) {
         this.name = name;
         this.designation = designation;
+    }
+
+
+    @Override
+    public int compareTo(Student o) {
+        /*if(this.getId()>o.getId())
+            return 1;
+        else if(this.getId()<o.getId())
+            return -1;
+        else
+            return 0;*/
+        return this.name.compareToIgnoreCase(o.name);
+
     }
 }
