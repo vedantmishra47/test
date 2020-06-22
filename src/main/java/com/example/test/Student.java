@@ -35,7 +35,7 @@ public class Student implements Comparable<Student> {
             return -1;
         else
             return 0;*/
-        return this.name.compareToIgnoreCase(o.name);
+        return this.getName().compareToIgnoreCase(o.getName());
 
     }
 }
