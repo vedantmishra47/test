@@ -23,7 +23,7 @@ public class StudentService {
     public List<Student> fetchAllData(){
         List<Student> studentList=Optional.ofNullable(studentRepository.findAll()).orElse(null);
         if(!studentList.isEmpty()) {
-            Collections.sort(studentList);
+            Collections.sort(studentList,new Student());
             return studentList;
         }
         else

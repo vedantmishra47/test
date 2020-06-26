@@ -4,12 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Comparator;
 
 @Entity
 @Getter
 @Setter
 @Table(name="Student")
-public class Student implements Comparable<Student> {
+public class Student implements Comparator<Student> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
@@ -26,16 +27,26 @@ public class Student implements Comparable<Student> {
         this.designation = designation;
     }
 
-
     @Override
+    public int compare(Student o1, Student o2) {
+        if(o1.getId()>o2.getId())
+            return 1;
+        else if(o1.getId()<o2.getId())
+            return -1;
+        else
+            return 0;
+    }
+
+
+    /*@Override
     public int compareTo(Student o) {
-        /*if(this.getId()>o.getId())
+        *//*if(this.getId()>o.getId())
             return 1;
         else if(this.getId()<o.getId())
             return -1;
         else
-            return 0;*/
+            return 0;*//*
         return this.getName().compareToIgnoreCase(o.getName());
 
-    }
+    }*/
 }
